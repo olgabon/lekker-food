@@ -1,0 +1,14 @@
+
+.recipes-div{
+display: flex;
+flex-direction: row;
+}
+.recipeCard{
+    width: 45%;
+    height: 78vh;
+    overflow: scroll;
+    display: none;
+}
+.recipes-card{
+    width: 70%;
+}

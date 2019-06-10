@@ -1,0 +1,25 @@
+.main-info-div{
+  font-family: 'Montserrat', sans-serif;
+  width: 40%;
+  border: 1px solid black;
+  padding: 10px;
+}
+#Nutrition_Facts{
+  font-weight: lighter;
+  font-size: 48px;
+  color: grey;
+  border-bottom: 10px solid black;
+}
+.info-div {
+  display: flex;
+  flex-direction: column;
+}
+.item-amount {
+  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.main-info-div h3{
+  font-weight: lighter;
+}

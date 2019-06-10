@@ -1,0 +1,22 @@
+.navbar-start a{
+    text-decoration: none;
+    color: black;
+    text-transform: uppercase;
+    padding: 2rem;
+}
+.navbar-start {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    text-align: center;
+    font-size: 17px;
+    justify-content: center;
+    flex-direction: row;
+
+}
+.navbar-start a:hover {
+    color: rgb(33, 114, 33);
+  }
+.navbar-start a:active {
+    color: rgb(140, 206, 140);
+}
