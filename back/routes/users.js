@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var bcrypt = require("bcrypt")
 var User = require("../models/User")
+var Favourite = require("../models/Favourite")
+var mongoose = require("mongoose")
 //var multer  = require('multer')
 var path = require("path")
 
@@ -47,6 +49,7 @@ router.post('/signup', function(req, res, next) {
                 })
                 .then((data)=> {
                   debugger
+                  res.cookie("name", req.body.name);
                   res.status(200).json({data, message: "Signed up"})
                 })
                 .catch((err)=> {
@@ -61,7 +64,6 @@ router.post('/signup', function(req, res, next) {
       
 });
 
-
 router.post('/login', function(req, res, next) {
   debugger
   User.findOne({name: req.body.name})
@@ -72,6 +74,7 @@ router.post('/login', function(req, res, next) {
           else if(match) {
             delete user.password
             req.session.user = user
+            res.cookie("name", req.body.name);
     
             // res.set({
             //     "Access-Control-Expose-Headers": "ETag",
@@ -96,29 +99,49 @@ router.post('/login', function(req, res, next) {
 
 
 
-
 router.post("/logout", (req, res)=> {
   if(req.session.user) {
     req.session.destroy()
+    console.log("log out")
     res.status(200).json({message: "Logged out"})
   } else {
     res.status(403).json({message: "Not logged in"})
   }
 })
 
-module.exports = router;
+router.post("/add-to-favourite", (req, res)=> {
+  var myId = mongoose.Types.ObjectId(req.session.user._id)
+  Favourite.create({uri, label, image, url} = req.body)
+    .then((recipe) => {
+        //console.log(myId)
+       User.findOneAndUpdate({_id: myId}, {
+         $push: {favouriteRecipes: recipe._id}
+       })
+       .then(resp =>{
+         res.send(resp)
+       })
+    })
+})
 
-//router.post("/update", upload.single('profilePic'), (req, res)=> {
-//  debugger
-//  User.findOneAndUpdate({_id: req.session.user._id}, {profilePic: req.file.filename}, {new: true},)
-//    .then((updatedUser)=> {
-//      let newSession = req.session.user
-//      newSession.profilePic = updatedUser.profilePic
-//      req.session.user = newSession
-//      debugger
-//      res.status(200).json({message: "User updated"})
-//    })
-//    .catch((err)=> {
-//      res.status(500).json({err: err})
-//    })
-//})
+router.get("/all-favourites", (req, res)=> {
+  const userId = req.session.user
+  console.log(userId)
+    User.findById(userId)
+      .populate("favouriteRecipes")
+      .then((user)=> {
+        res.status(200).json(user.favouriteRecipes)
+      })
+      .catch((err)=> {
+        res.status(500).json({message: err})
+      })
+})
+
+// router.get("/delete", (req, res)=> {
+//   let myId = mongoose.Types.ObjectId(req.session.currentUser._id)
+//   let recipeToRemove = mongoose.Types.ObjectId(req.query.id)
+//   User.update({_id: myId}, { $pullAll: {favouriteRecipes: [recipeToRemove]} }, (err)=> {
+//       if (err) res.status(500).json({message: err}) 
+//       else res.status(200).json({message: "Removed"})
+//   })
+// })
+module.exports = router;

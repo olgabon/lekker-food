@@ -1,0 +1,61 @@
+.big-div {
+    display: flex;
+    margin: 0;
+    height: 90vh;
+}
+.left-div {
+    background-color:rgb(183, 214, 183);
+    width: 50vw;
+}
+.left-div a{
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+    width: fit-content;
+    margin: 1rem auto;
+    text-decoration: none;
+    text-align: center;
+    background-color: white;
+    padding: 1rem;
+    box-shadow: 0 3px 7px rgba(145, 145, 145, 0.481);
+    border-radius: 5px;
+}
+.left-div a:hover{
+    background-color: #56b291;
+}
+.left-div a:active {
+    color: white;
+}
+.left-div span {
+    width: 14px;
+}
+.left-div h3{
+    font-family: 'Ultra', serif;
+    margin-bottom: 20%;
+    text-align: center;
+    font-size: 3rem;
+    line-height: 3rem;
+}
+.left-div-content{
+    margin: 20% auto;
+}
+.righ-div {
+    background-image: url(../../public/oranges.jpeg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 50vw;
+
+}
+.righ-div h1{
+    font-family: 'Ultra', serif;
+    margin: 19%; 
+    font-size: 4rem;
+    text-align: center;
+    color: black;
+    background-color: white;
+    opacity: 0.8;
+    padding: 25px;
+}
+

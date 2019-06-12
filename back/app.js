@@ -5,10 +5,10 @@ var mongoose = require("mongoose")
 var cors = require("cors")
 var session = require('express-session')
 
-const port = 5000;
+const port = process.env.PORT;
 require("dotenv").config()
 
-mongoose.connect("mongodb://localhost/food")
+mongoose.connect(process.env.DATA_BASE)
     .then(()=> {
         console.log("connected to mongo")
     })
@@ -19,7 +19,7 @@ mongoose.connect("mongodb://localhost/food")
 var app = express();
 
 app.use(session({
-    secret: 'fat potato',
+    secret: process.env.COOKIE_SECRET,
     resave: false,
 }))
 
@@ -40,7 +40,11 @@ app.use(cors({
     credentials: true
 }))
 
-app.use('/', require('./routes/index'))
+app.use((req, res, next)=>{
+    res.sendFile(__dirname + "/public/index.html")
+})
+
+//app.use('/', require('./routes/index'))
 
 app.use('/users', require('./routes/users'));
 

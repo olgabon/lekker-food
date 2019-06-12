@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import axios from "axios";
-//import './Signup.css';
-
+import './Login.css';
+import qs from "qs"
 
 export default class Signup extends Component {
 
@@ -12,49 +12,68 @@ export default class Signup extends Component {
         err: null
     }
 
-
-    handleChange = (e)=> {
+    handleChange = (e) => {
         this.setState({
             [e.target.name]: e.target.value
         })
     }
 
-    submitForm = (e)=> {
+    submitForm = (e) => {
         e.preventDefault()
         let signupUser = this.state
-debugger
+        var user = {
+            name: this.state.name,
+            email: this.state.email,
+            password: this.state.password
+        }
+
         axios({
-            url: "http://localhost:5000/users/signup",
-            data: signupUser,
+            url: `${process.env.REACT_APP_BACK_END_BASE_URL}users/signup`,
+            data: qs.stringify(user),
             method: "post",
             withCredentials: true
-        })
-        .then((response)=> {
-debugger
+        }).then((response) => {
+
             console.log('signup succesfull')
-            this.props.history.push("/")
-        })
-        .catch((err)=> {
-            debugger
-            this.setState({
-                err
-            })
+            this
+                .props
+                .history
+                .push("/login")
+        }).catch((err) => {
+
+            this.setState({err})
         })
     }
     render() {
         return (
-            <div className="form-div">
-                <form onSubmit={this.submitForm}>
-                    <h1>Sign up</h1>
-                    <label>Username</label> <br/>
-                    <input type="text" name="name" value={this.state.name} onChange={this.handleChange} /><br/>
-                    <label>Email</label> <br/>
-                    <input type="text" name="email" value={this.state.email} onChange={this.handleChange} /><br/>
-                    <label>Password</label> <br/>
-                    <input type="password" name="password" value={this.state.password} onChange={this.handleChange}/><br/>
-                    <button type="submit">Sign up</button>
-                </form>
-                {this.state.err? <h1>{this.state.err.response.data.message}</h1>:""}
+            <div className="big-div-login">
+                <div className="form-div">
+                    <form className="form-div-form" onSubmit={this.submitForm}>
+                        <h1>Sign up</h1>
+                        <input
+                            placeholder="username"
+                            type="text"
+                            name="name"
+                            value={this.state.name}
+                            onChange={this.handleChange}/><br/>
+                        <input
+                            placeholder="email"
+                            type="text"
+                            name="email"
+                            value={this.state.email}
+                            onChange={this.handleChange}/><br/>
+                        <input
+                            placeholder="password"
+                            type="password"
+                            name="password"
+                            value={this.state.password}
+                            onChange={this.handleChange}/><br/>
+                        <button type="submit">Sign up</button>
+                        {this.state.err
+                            ? <h1>{this.state.err.response.data.message}</h1>
+                            : ""}
+                    </form>
+                </div>
             </div>
         )
     }

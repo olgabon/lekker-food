@@ -1,3 +1,25 @@
-.recipe-ingr{
-width: 50%;
+.recipe-ingr {
+    padding: 5%;
+    align-items: center;
+    margin: 0 auto;
+}
+.btn-favourite{
+    background-color: white;
+    color: #56b291;
+    font-size: 18px;
+    margin: 1rem auto;
+    text-align: center;
+    border: none;
+}
+.btn-favourite:active{
+    color:rgb(183, 214, 183);
+}
+.recipe-ingr a {
+    text-decoration: none;
+    color: #56b291;
+    font-weight: bold;
+    font-size: 16px;
+}
+.returnVal-div{
+    line-height: 20px;
 }

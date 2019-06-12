@@ -1,14 +1,72 @@
-
 .recipes-div{
-display: flex;
-flex-direction: row;
+    display: flex;
+    flex-direction: column;
 }
-.recipeCard{
-    width: 45%;
-    height: 78vh;
-    overflow: scroll;
-    display: none;
+.recipeCardColumn{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    height: 60vh;
+    overflow: auto;
 }
-.recipes-card{
-    width: 70%;
+.singleCard{
+    width: 50%;
+}
+.singleCard img{
+    width: 40%;
+}
+.recipes-search-div {
+    padding: 5% 10%;
+}
+.input-div-recipes {
+    display: flex;
+}
+.input-div-recipes input{
+    width: 25vw;
+    border: none;
+    border-style: none;
+    padding: 0 10px;
+    font-size: 16px;
+    height: 2.5rem;
+    background-color: white;
+    border-radius: 5px 0 0 5px;
+  }
+  .input-div-recipes button{
+    background-color: white;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    width: 10%;
+}
+.input-div-recipes button:active{
+    background-color: rgb(183, 214, 183);
+}
+
+.recipeDetail {
+    width: 45vw;
+}
+.right-div-recipes{
+    width: 50vw;
+    display: flex;
+    align-items: center;
+}
+.left-div-recipes{
+    background-color: rgb(183, 214, 183);
+    width: 50vw;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+}
+.right-div-recipes{
+    width: 50vw;
+    height: 90vh;
+    background-image: url(../../public/lum3n-403555-unsplash.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.recipeDetail {
+    margin: 10% auto;
+    background-color: white;
+    display: flex;
+    opacity: 0.9;
 }

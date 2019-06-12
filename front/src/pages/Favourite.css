@@ -1,0 +1,36 @@
+.big-div-fav{
+    background-color: rgb(183, 214, 183);
+}
+.card-div{
+    padding: 20px 40px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.favourite-card-div {
+    text-align: center;
+    padding: 20px;
+    width: 18vw;
+}
+.favourite-card-div a{
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #2f6d56;
+}
+.favourite-card-div img{
+    margin-bottom: 10px;
+    border-radius: 20px;
+    width: 18vw;
+}
+.favourite-card-div a:hover{
+    color: black;
+}
+.favourite-card-div a:active{
+    color: white;
+}
+.big-div-fav h1{
+    text-align: center;
+    padding-top: 30px;
+    margin: 0 auto;
+}

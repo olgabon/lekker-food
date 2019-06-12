@@ -2,21 +2,25 @@
     text-decoration: none;
     color: black;
     text-transform: uppercase;
-    padding: 2rem;
+    margin: 0 25px;
 }
 .navbar-start {
+    height: 10vh;
+    margin: 0 auto;
+    width: 80vw;
     display: flex;
     align-items: center;
-    overflow: hidden;
-    text-align: center;
-    font-size: 17px;
+    font-size: 14px;
     justify-content: center;
-    flex-direction: row;
-
 }
 .navbar-start a:hover {
-    color: rgb(33, 114, 33);
+    color: #56b291;
   }
 .navbar-start a:active {
-    color: rgb(140, 206, 140);
+    color: #1f7e5b;
+}
+.navbar-item-home {
+    font-family: 'Ultra', serif;
+    font-weight: bold;
+    font-size: 1.7rem;
 }

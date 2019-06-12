@@ -1,0 +1,52 @@
+.big-div-login {
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+    height: 90vh;
+    background-image: url(../../public/bowl-cuisine-delicious-1640773.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.form-div{
+    background-color: white;
+    margin: auto;
+    width: 30vw;
+    height: 45vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+}
+.form-div-form{
+    margin-top: 5%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.form-div h1{ 
+    text-align: center;
+}
+.form-div-form input{
+    width: 20vw;
+    padding: 0 10px;
+    font-size: 16px;
+    height: 2rem;
+    border-radius: 5px;
+    border: 1px solid #b7d6b7;
+    margin-bottom: 5px;
+}
+.form-div-form button{
+    font-size: 16px;
+    background-color: #b7d6b7;
+    border: none;
+    width: 8vw;
+    height: 2rem;
+    border-radius: 5px;
+    font-weight: bold;
+}
+.form-div-form button:hover{
+    background-color: #56b291;
+}
+.form-div-form button:active {
+    color: white;
+}
