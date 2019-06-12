@@ -9,7 +9,7 @@ const Nav = (props) => {
         
         <Link to="/nutrition" class="navbar-item" >Nutritions</Link>
         <Link to="/recipes" class="navbar-item" >Recipes</Link>
-        <Link to="/" class="navbar-item" >Home</Link>
+        <Link to="/" class="navbar-item-home" >Health Style</Link>
         {
           Object.keys(props.user).length === 0?
           <div>
@@ -18,7 +18,7 @@ const Nav = (props) => {
           </div>
           :
           <div>
-              {/* <Link to={"/profile"}>Favourite</Link> */}
+              <Link to={"/favourite"}>Favourite</Link>
               <Link onClick={props.logout}>Log out</Link>
           </div>
         }
