@@ -91,8 +91,4 @@ class Recipes extends Component {
         )
     }
 }
-//            <label>Serves</label> <br/>            <input type="number"
-// name="from" placeholder="from" onChange={this.handleChange}
-// value={this.state.from}/>            <input type="number" name="to"
-// placeholder="to" onChange={this.handleChange} value={this.state.to}/>
 export default Recipes;
