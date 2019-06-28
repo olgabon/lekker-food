@@ -10,12 +10,9 @@ class Favourite extends Component {
         favourites: []
     }
     componentDidMount() {
-        debugger
         axios({url: `${process.env.REACT_APP_BACK_END_BASE_URL}users/all-favourites`, withCredentials: true, method: "get"}).then(response => {
-            debugger
             this.setState({favourites: response.data})
         }).catch((err) => {
-            debugger
             this.setState({err})
         })
     }
