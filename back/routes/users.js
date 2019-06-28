@@ -111,21 +111,37 @@ router.post("/logout", (req, res)=> {
 
 router.post("/add-to-favourite", (req, res)=> {
   var myId = mongoose.Types.ObjectId(req.session.user._id)
-  Favourite.create({uri, label, image, url} = req.body)
-    .then((recipe) => {
-        //console.log(myId)
-       User.findOneAndUpdate({_id: myId}, {
-         $push: {favouriteRecipes: recipe._id}
-       })
-       .then(resp =>{
-         res.send(resp)
-       })
-    })
+  var recipeToAdd = req.body.uri
+  //console.log(req.body)
+  let query = {...req.body, user: myId}
+  let favCheck = {
+    $and:[
+      {user: myId},
+      {uri: req.body.uri}
+    ]
+  }
+  Favourite.findOne(favCheck).then(favorite =>{
+    if(!favorite) {
+      Favourite.create(query)
+      .then((recipe) => {
+          console.log(recipe)
+         User.findOneAndUpdate({_id: myId}, {
+          $addToSet: {favouriteRecipes: recipe._id}
+         })
+         .then(resp =>{
+           res.send(resp)
+         })
+      })
+    }
+    else {
+      res.send("Favourite is present")
+    }
+  })
+
 })
 
 router.get("/all-favourites", (req, res)=> {
   const userId = req.session.user
-  console.log(userId)
     User.findById(userId)
       .populate("favouriteRecipes")
       .then((user)=> {
@@ -135,13 +151,4 @@ router.get("/all-favourites", (req, res)=> {
         res.status(500).json({message: err})
       })
 })
-
-// router.get("/delete", (req, res)=> {
-//   let myId = mongoose.Types.ObjectId(req.session.currentUser._id)
-//   let recipeToRemove = mongoose.Types.ObjectId(req.query.id)
-//   User.update({_id: myId}, { $pullAll: {favouriteRecipes: [recipeToRemove]} }, (err)=> {
-//       if (err) res.status(500).json({message: err}) 
-//       else res.status(200).json({message: "Removed"})
-//   })
-// })
 module.exports = router;
